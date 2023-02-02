@@ -3,7 +3,6 @@ require('dotenv').config();
 const db = require('./config/connection');
 const cors = require('cors')
 const routes = require('./routes');
-const SongModel = require('./models/Song')
 
 const app = express()
 const PORT = process.env.PORT || 3001;
@@ -12,18 +11,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors())
 
+// app.use(routes)
+
 // mongoose.connect("mongodb+srv://espinbm49:f4mHyyNj60J3Gtva@cluster0.84q1nnv.mongodb.net/songLibraryDB?retryWrites=true&w=majority", {
 //   useNewUrlParser: true,
 // });
 
-app.get('/', async (req, res) => {
-  SongModel.find({}, (err, result) => {
-    if (err) {
-      res.send(err)
-    }
-    res.send(result)
-  })
-});
+// app.get('/', async (req, res) => {
+//   SongModel.find({}, (err, result) => {
+//     if (err) {
+//       res.send(err)
+//     }
+//     res.send(result)
+//   })
+// });
 
 // app.post('/insert', async (req, res) => {
 
