@@ -4,42 +4,41 @@ import './App.css';
 
 function App() {
 
-  const [foodName, setFoodName] = useState('')
-  const [days, setDays] = useState(0)
-  const [newFoodName, setNewFoodName] = useState('')
-  const [foodList, setFoodList] = useState([])
+  // const [songTitle, setSongTitle] = useState('')
+  // const [artist, setDays] = useState(0)
+  // const [newFoodName, setNewFoodName] = useState('')
+  const [songList, setSongList] = useState([])
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/read").then((response) => {
-      setFoodList(response.data)
+    Axios.get("http://localhost:3001").then((response) => {
+      setSongList(response.data)
     })
-  }, [foodList])
+  }, [songList])
 
-  const addToList = () => {
-    Axios.post("http://localhost:3001/insert", {
-      foodName: foodName,
-      days: days,
-    })
-    document.getElementById("foodName").value = ''
-    document.getElementById("days").value = ''
-  }
+  // const addToList = () => {
+  //   Axios.post("http://localhost:3001/insert", {
+  //     foodName: foodName,
+  //     days: days,
+  //   })
+  //   document.getElementById("foodName").value = ''
+  //   document.getElementById("days").value = ''
+  // }
 
-  const updateFood = (id) => {
-    Axios.put("http://localhost:3001/update", {
-      id: id, newFoodName: newFoodName,
-    })
-    document.getElementById("updateFood").value = ''
-  }
+  // const updateFood = (id) => {
+  //   Axios.put("http://localhost:3001/update", {
+  //     id: id, newFoodName: newFoodName,
+  //   })
+  //   document.getElementById("updateFood").value = ''
+  // }
 
-  const deleteFood = (id) => {
-    Axios.delete(`http://localhost:3001/delete/${id}`)
-  }
+  // const deleteFood = (id) => {
+  //   Axios.delete(`http://localhost:3001/delete/${id}`)
+  // }
 
   return (
     <div className="App">
-      <h1>CRUD App with MERN</h1>
 
-      <label>Food Name</label>
+      {/* <label>Food Name</label>
       <input
         id='foodName'
         type="text"
@@ -54,23 +53,22 @@ function App() {
         type="number"
         onChange={(event) => setDays(event.target.value)} />
 
-      <button onClick={addToList} > Add To List </button>
+      <button onClick={addToList} > Add To List </button> */}
 
-      <h1> Food List </h1>
-      {foodList.map((val, key) => {
+      <h1> Song Library </h1>
+      {songList.map((val, key) => {
         return (
-          <div key={key} className='food'>
-            <h1>{val.foodName}</h1> <h1>{val.daysSinceIAte}</h1>
-            <input
+          <div key={key} >
+            <h1>{val.songTitle}</h1> <h1>{val.artist}</h1> <h1>{val.album}</h1>
+            {/* <input
               id='updateFood'
               type="text"
               placeholder='New Food Name...'
               onChange={(event) => setNewFoodName(event.target.value)}
             />
             <button onClick={() => updateFood(val._id)}> Update </button>
-            <button onClick={() => deleteFood(val._id)}> Delete </button>
+            <button onClick={() => deleteFood(val._id)}> Delete </button> */}
           </div>)
-
       })}
     </div>
   );
