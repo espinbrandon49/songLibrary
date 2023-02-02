@@ -1,15 +1,15 @@
 [
   {
-    "title": "title1",
+    "songTitle": "title4",
     "artist": "artist1",
     "album": "album1"},
   {
-    "title": "title2",
+    "songTitle": "title5",
     "artist": "artist2",
     "album": "album2"
   },
   {
-    "title": "title3",
+    "songTitle": "title6",
     "artist": "artist3",
     "album": "album3"
   }
