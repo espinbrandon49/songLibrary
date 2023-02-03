@@ -1,11 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 * {
   box-sizing: border-box;
 }
 
 body {
   background-color: #DACBB4;
+  min-height: 100vh;
 }
 
 .textColor {
   color: #fff;
+}
+
+.textColorCard {
+ background-color: #906E49;
+ color: #FBFBFB;
+ font-family:'Roboto', sans-serif;
+}
+
+footer {
+  background-color: #FBFBFB;
+  text-align: center;
+
+  position: relative;
+  bottom: 0;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(70, 130, 180);
+}
+
+.githubIcon {
+  color: black;
 }
