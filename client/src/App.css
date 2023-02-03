@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
 
 * {
   box-sizing: border-box;
@@ -19,10 +19,13 @@ body {
  font-family:'Roboto', sans-serif;
 }
 
+.thinWeight {
+  font-weight: 300 !important;
+}
+
 footer {
   background-color: #FBFBFB;
   text-align: center;
-
   position: relative;
   bottom: 0;
 }
@@ -34,4 +37,8 @@ a {
 
 .githubIcon {
   color: black;
+}
+
+.cardButtons {
+background-color: rgb(62, 40, 24) !important;
 }

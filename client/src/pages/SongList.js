@@ -15,7 +15,7 @@ const SongList = () => {
   return (
     <>
       <div>
-        <AddSong />
+        <AddSong songList={setSongList}/>
       </div>
       <div className='container d-flex flex-row flex-wrap mt-4 justify-content-center border border-dark-subtle'>
         {songList.length > 0
