@@ -22,7 +22,7 @@ const AddSong = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (songTitle == '' || artist == '' || album == '') {
+    if (songTitle === '' || artist === '' || album === '') {
       alert('Please fill in all fields')
     }
 
@@ -35,7 +35,7 @@ const AddSong = () => {
 
   return (
     <>
-      <button type="button" className="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#addSong">
+      <button type="button" className="btn btn-primary btn-lg w-100 square" data-bs-toggle="modal" data-bs-target="#addSong">
         <div className="d-flex align-items-center justify-content-center">
           <MdOutlineLibraryMusic />
           <div>Add Song</div>

@@ -2,62 +2,65 @@ import { useState } from "react";
 import { MdSystemUpdateAlt } from "react-icons/md"
 import Axios from "axios";
 
-const AddSong = () => {
-  const [songTitle, setSongTitle] = useState('');
-  const [artist, setArtist] = useState('');
-  const [album, setAlbum] = useState('');
+const UpdateSong = ({ song }) => {
+  const [newSongTitle, setNewSongTitle] = useState();
+  const [newArtist, setNewArtist] = useState();
+  const [newAlbum, setNewAlbum] = useState();
 
-  const addSong = () => {
-    Axios.post("http://localhost:3001/insert", {
-      songTitle: songTitle,
-      artist: artist,
-      album: album
+  const updateSong = (id) => {
+    Axios.put("http://localhost:3001/update", {
+      id: id,
+      newSongTitle: newSongTitle,
+      newArtist: newArtist,
+      newAlbum: newAlbum,
     })
     document.getElementById("songTitle").value = ''
     document.getElementById("artist").value = ''
     document.getElementById("album").value = ''
-    window.location.reload()
+    // window.location.reload()
   }
 
-  const onSubmit = (e) => {
+  const onSubmit = (e, id) => {
     e.preventDefault();
 
-    if (songTitle == '' || artist == '' || album == '') {
+    if (newSongTitle === '' || newArtist === '' || newAlbum === '') {
       alert('Please fill in all fields')
     }
 
-    addSong();
+    updateSong(id);
 
-    setSongTitle('');
-    setArtist('');
-    setAlbum('');
+    setNewSongTitle('');
+    setNewArtist('');
+    setNewAlbum('');
+
+    console.log(e.target.value, id)
   }
 
   return (
     <>
-      <button type="button" className="btn btn-primary rounded-end" data-bs-toggle="modal" data-bs-target="#addSong">
+      <button type="button" className="btn btn-primary rounded-end" data-bs-toggle="modal" data-bs-target="#updateSong">
         <div className="d-flex align-items-center justify-content-center">
           <div><MdSystemUpdateAlt /></div>
         </div>
       </button>
 
-      <div className="modal fade" id="addSong" aria-labelledby="addSongLabel" aria-hidden="true">
+      <div className="modal fade" id="updateSong" aria-labelledby="updateSongLabel" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="addSongLabel"><MdSystemUpdateAlt /></h1>
+              <h1 className="modal-title fs-5" id="updateSongLabel">Update Song</h1>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
               <form onSubmit={onSubmit}>
                 <div className="mb-3">
-                  <label className="form-label">Song Title</label>
+                  <label className="form-label">New Song Title</label>
                   <input
                     type="text"
                     className="form-control"
-                    id="songTitle"
-                    value={songTitle}
-                    onChange={(e) => setSongTitle(e.target.value)}
+                    id="newSongTitle"
+                    value={newSongTitle}
+                    onChange={(e) => setNewSongTitle(e.target.value)}
                   />
                 </div>
                 <div className="mb-3">
@@ -65,9 +68,9 @@ const AddSong = () => {
                   <input
                     type="text"
                     className="form-control"
-                    id="artist"
-                    value={artist}
-                    onChange={(e) => setArtist(e.target.value)}
+                    id="newArtist"
+                    value={newArtist}
+                    onChange={(e) => setNewArtist(e.target.value)}
                   />
                 </div>
                 <div className="mb-3">
@@ -75,13 +78,12 @@ const AddSong = () => {
                   <input
                     type="text"
                     className="form-control"
-                    id="album"
-                    value={album}
-                    onChange={(e) => setAlbum(e.target.value)}
+                    id="newAlbum"
+                    value={newAlbum}
+                    onChange={(e) => setNewAlbum(e.target.value)}
                   />
                 </div>
                 <button
-                  type="submit"
                   className="btn btn-dark-outline w-100"
                   data-bs-dismiss="modal"
                 >Submit</button>
@@ -94,4 +96,4 @@ const AddSong = () => {
   )
 }
 
-export default AddSong
+export default UpdateSong;

@@ -27,29 +27,27 @@ router.post('/insert', async (req, res) => {
 });
 
 router.delete('/delete/:id', async (req, res) => {
-  const id = req.params.id 
+  const id = req.params.id
   await Song.findByIdAndRemove(id).exec()
   res.send("SONG DELETED")
 })
 
-router.put('/update', async (req, res) => {
-
-  const newSongTitle = req.body.newSongTitle;
-  const newArtist = req.body.newArtist;
-  const newAlbum = req.body.newAlbum;
-  const id = req.body.id;
-
-  const song = { songTitle: newSongTitle, artist: newArtist, album: newAlbum }
-
-  try {
-    await Song.findById(id, (err, updatedSong) => {
-      updatedSong.songTitle = newFoodName;
-      updatedFood.save()
-      res.send("update")
+router.put('/update/:id', async (req, res) => {
+  Song.findOneAndUpdate(
+    { _id: req.params.id },
+    { $set: req.body },
+    { runValidators: true, new: true }
+  )
+    .then((song) =>
+      !song
+        ? res.status(404).json({ message: 'No song with this id!' })
+        : res.json(song)
+    )
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
     });
-  } catch (err) {
-    console.log(err)
-  }
+    console.log(req.body)
 });
 
 module.exports = router;

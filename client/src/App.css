@@ -42,3 +42,7 @@ a {
 .cardButtons {
 background-color: rgb(62, 40, 24) !important;
 }
+
+.square {
+  border-radius: 0 !important;
+}

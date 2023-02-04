@@ -24,8 +24,7 @@ const Song = ({ song }) => {
           >
             <FaTrashAlt />
           </button>
-          {/* <button type="button" className='btn btn-secondary'><MdSystemUpdateAlt /></button> */}
-          <UpdateSong/>
+          <UpdateSong song={song}/>
           </div>
       </div>
     </div>
