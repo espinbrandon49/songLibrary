@@ -2,6 +2,7 @@ const express = require('express');
 require('dotenv').config();
 const db = require('./config/connection');
 const cors = require('cors')
+const path = require('path');
 
 const app = express()
 const PORT = process.env.PORT || 3001;
@@ -13,6 +14,10 @@ app.use(cors())
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 };
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
 
 app.use(require('./controllers/songRoutes'))
 
