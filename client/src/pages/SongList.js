@@ -18,17 +18,17 @@ const SongList = async () => {
   return (
     <>
       <div>
-        <AddSong songList={setSongList}/>
+        <AddSong songList={setSongList} />
       </div>
       <div className='container d-flex flex-row flex-wrap mt-4 justify-content-center border border-dark-subtle'>
-        {await songList.length > 0
-          ? await songList.map((song, index) => {
-            return (
-              <div key={index} className="">
+        {
+          songList.length > 0
+            ? songList.map((song) => (
+              <div key={song._id} className="">
                 <Song song={song} />
               </div>)
-          })
-          : (<p className='textColor display-6 text-center mt-5'>No songs in Library</p>)}
+            )
+            : (<p className='textColor display-6 text-center mt-5'>No songs in Library</p>)}
       </div>
     </>
   )
