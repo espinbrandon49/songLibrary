@@ -9,6 +9,7 @@ function App() {
     <div className="app">
       <Header />
       <SongList />
+      <div className='push'></div>
       <Footer/>
     </div>
   );

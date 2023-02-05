@@ -22,8 +22,7 @@ const UpdateSongReact = ({song}) => {
       newArtist: newArtist,
       newAlbum: newAlbum,
     })
-    // window.location.reload()
-    console.log(id, newSongTitle, newArtist, newAlbum)
+    window.location.reload()
   }
 
   return (
@@ -43,7 +42,6 @@ const UpdateSongReact = ({song}) => {
               <Form.Control
                 type="text"
                 placeholder="New song title..."
-                // id="newSongTitle"
                 value={newSongTitle}
                 onChange={(e) => setNewSongTitle(e.target.value)}
                 autoComplete="off"

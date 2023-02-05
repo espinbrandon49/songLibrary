@@ -23,13 +23,6 @@ body {
   font-weight: 300 !important;
 }
 
-footer {
-  background-color: #FBFBFB;
-  text-align: center;
-  position: relative;
-  bottom: 0;
-}
-
 a {
   text-decoration: none;
   color: rgb(70, 130, 180);
@@ -45,4 +38,20 @@ background-color: rgb(62, 40, 24) !important;
 
 .square {
   border-radius: 0 !important;
+}
+
+footer {
+  background-color: #FBFBFB;
+  text-align: center;
+}
+
+.push {
+  height: 50px;
+  }
+  
+html, body { height: 100%;}
+
+body > footer {
+  position: sticky;
+  top: 100vh;
 }
