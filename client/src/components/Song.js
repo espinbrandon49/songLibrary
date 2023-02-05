@@ -3,7 +3,7 @@ import UpdateSongReact from "./UpdateSongReact";
 import Axios from 'axios';
 
 const deleteSong = (id) => {
-  Axios.delete(`https://songlibrary.herokuapp.com/delete/${id}`)
+  Axios.delete(`http://localhost:3001/delete/${id}`)
   window.location.reload()
 }
 
