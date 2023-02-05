@@ -15,8 +15,7 @@ const UpdateSongReact = ({song}) => {
   const [newAlbum, setNewAlbum] = useState(song.album);
 
   const updateSong = (id) => {
-
-    Axios.put('http://localhost:3001/update', {
+    Axios.put('https://songlibrary.herokuapp.com/update', {
       id: id,
       newSongTitle: newSongTitle,
       newArtist: newArtist,

@@ -3,12 +3,11 @@ import UpdateSongReact from "./UpdateSongReact";
 import Axios from 'axios';
 
 const deleteSong = (id) => {
-  Axios.delete(`http://localhost:3001/delete/${id}`)
+  Axios.delete(`https://songlibrary.herokuapp.com/delete/${id}`)
   window.location.reload()
 }
 
 const Song = ({ song }) => {
-
   return (
     <div className="card m-2 border border-dark-subtle" style={{ width: "18rem" }}>
       <ul className="list-group list-group-flush border border-light-subtle">

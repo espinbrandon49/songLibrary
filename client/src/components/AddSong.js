@@ -7,10 +7,8 @@ const AddSong = () => {
   const [artist, setArtist] = useState('');
   const [album, setAlbum] = useState('');
 
-
-
   const addSong = () => {
-    Axios.post("http://localhost:3001/insert", {
+    Axios.post("https://songlibrary.herokuapp.com/insert", {
       songTitle: songTitle,
       artist: artist,
       album: album
