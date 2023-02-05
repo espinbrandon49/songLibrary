@@ -11,6 +11,7 @@ const SongList = () => {
       setSongList(response.data)
     })
     console.log(typeof songList)
+    Array.isArray(songList)
   }, [])
 
   return (
