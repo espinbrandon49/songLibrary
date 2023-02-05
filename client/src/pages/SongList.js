@@ -10,6 +10,7 @@ const SongList = () => {
     Axios.get("https://songlibrary.herokuapp.com/").then((response) => {
       setSongList(response.data)
     })
+    console.log(typeof songList)
   }, [])
 
   return (
