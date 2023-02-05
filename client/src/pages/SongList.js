@@ -10,7 +10,6 @@ const SongList = () => {
     Axios.get("http://localhost:3001/").then((response) => {
       setSongList(response.data)
     })
-    
   }, [])
 
   return (
