@@ -7,6 +7,8 @@ const AddSong = () => {
   const [artist, setArtist] = useState('');
   const [album, setAlbum] = useState('');
 
+
+
   const addSong = () => {
     Axios.post("http://localhost:3001/insert", {
       songTitle: songTitle,
@@ -83,7 +85,7 @@ const AddSong = () => {
                 </div>
                 <button
                   type="submit"
-                  className="btn btn-dark-outline w-100"
+                  className="btn btn-primary-outline w-100"
                   data-bs-dismiss="modal"
                 >Submit</button>
               </form>

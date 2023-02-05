@@ -32,22 +32,42 @@ router.delete('/delete/:id', async (req, res) => {
   res.send("SONG DELETED")
 })
 
-router.put('/update/:id', async (req, res) => {
-  Song.findOneAndUpdate(
-    { _id: req.params.id },
-    { $set: req.body },
-    { runValidators: true, new: true }
-  )
-    .then((song) =>
-      !song
-        ? res.status(404).json({ message: 'No song with this id!' })
-        : res.json(song)
-    )
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
+// router.put('/update/:id', async (req, res) => {
+//   Song.findOneAndUpdate(
+//     { _id: req.params.id },
+//     { $set: req.body },
+//     { runValidators: true, new: true }
+//   )
+//     .then((song) =>
+//       !song
+//         ? res.status(404).json({ message: 'No song with this id!' })
+//         : res.json(song)
+//     )
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+//     console.log(req.body)
+// });
+
+router.put('/update', async (req, res) => {
+
+  const newSongTitle = req.body.newSongTitle;
+  const newArtist = req.body.newArtist;
+  const newAlbum = req.body.newArtist;
+  const id = req.body.id;
+
+  try {
+    Song.findById(id, (err, updatedSong) => {
+      updatedSong.songTitle = newSongTitle;
+      updatedSong.artist = newArtist;
+      updatedSong.album = newAlbum;
+      updatedSong.save()
+      res.send("SONG UPDATED")
     });
-    console.log(req.body)
+  } catch (err) {
+    console.log(err)
+  }
 });
 
 module.exports = router;
