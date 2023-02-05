@@ -12,6 +12,7 @@ const SongList = () => {
     })
     console.log(typeof songList)
     console.log(Array.isArray(songList))
+    console.log(songList.length)
   }, [])
 
   return (
@@ -20,7 +21,7 @@ const SongList = () => {
         <AddSong songList={setSongList}/>
       </div>
       <div className='container d-flex flex-row flex-wrap mt-4 justify-content-center border border-dark-subtle'>
-        {songList.length > 0 && Array.isArray(songList)
+        {songList.length > 0
           ? songList.map((song, index) => {
             return (
               <div key={index} className="">
