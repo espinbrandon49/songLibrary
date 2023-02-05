@@ -7,7 +7,7 @@ const SongList = () => {
   const [songList, setSongList] = useState([])
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/").then((response) => {
+    Axios.get("https://songlibrary.herokuapp.com/").then((response) => {
       setSongList(response.data)
     })
   }, [])
