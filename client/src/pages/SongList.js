@@ -3,7 +3,7 @@ import Axios from "axios";
 import Song from '../components/Song';
 import AddSong from '../components/AddSong';
 
-const SongList = () => {
+const SongList = async () => {
   const [songList, setSongList] = useState([])
 
   useEffect(() => {
@@ -21,8 +21,8 @@ const SongList = () => {
         <AddSong songList={setSongList}/>
       </div>
       <div className='container d-flex flex-row flex-wrap mt-4 justify-content-center border border-dark-subtle'>
-        {songList.length > 0
-          ? songList.map((song, index) => {
+        {await songList.length > 0
+          ? await songList.map((song, index) => {
             return (
               <div key={index} className="">
                 <Song song={song} />
