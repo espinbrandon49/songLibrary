@@ -7,9 +7,10 @@ const SongList = () => {
   const [songList, setSongList] = useState([])
 
   useEffect(() => {
-    Axios.get("https://songlibrary.herokuapp.com/").then((response) => {
+    Axios.get("http://localhost:3001/").then((response) => {
       setSongList(response.data)
     })
+    
   }, [])
 
   return (
@@ -18,7 +19,7 @@ const SongList = () => {
         <AddSong songList={setSongList}/>
       </div>
       <div className='container d-flex flex-row flex-wrap mt-4 justify-content-center border border-dark-subtle'>
-        {songList.length > 0
+        {songList.length > 0 && Array.isArray(songList)
           ? songList.map((song, index) => {
             return (
               <div key={index} className="">
