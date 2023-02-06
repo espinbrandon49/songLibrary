@@ -9,6 +9,7 @@ const SongList = () => {
   useEffect(() => {
     Axios.get("https://songlibrary.herokuapp.com/").then((response) => {
       setSongList(response.data)
+      console.log(response.data)
     })
   }, [songList])
 
