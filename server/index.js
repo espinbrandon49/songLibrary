@@ -1,4 +1,5 @@
 const express = require('express');
+const controllers = require('./controllers');
 require('dotenv').config();
 const db = require('./config/connection');
 const cors = require('cors')
@@ -19,7 +20,7 @@ if (process.env.NODE_ENV === 'production') {
 //   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 // });
 
-app.use(require('./controllers/songRoutes'))
+app.use(controllers)
 
 db.once('open', () => {
   app.listen(PORT, () => console.log(`Now listening on localhost: ${PORT}`));

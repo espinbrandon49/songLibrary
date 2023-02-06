@@ -7,7 +7,7 @@ const SongList = () => {
   const [listOfSongs, setListOfSongs] = useState([])
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/listofsongs").then((response) => {
+    Axios.get("http://localhost:3001/api/songs/listofsongs").then((response) => {
       setListOfSongs(response.data)
     })
   }, [])

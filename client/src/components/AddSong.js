@@ -8,7 +8,7 @@ const AddSong = () => {
   const [album, setAlbum] = useState('');
 
   const addSong = () => {
-    Axios.post("http://localhost:3001/insert", {
+    Axios.post("http://localhost:3001/api/songs/insert", {
       songTitle: songTitle,
       artist: artist,
       album: album
