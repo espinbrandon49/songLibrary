@@ -7,7 +7,7 @@ const SongList = () => {
   const [listOfSongs, setListOfSongs] = useState([{album: "Best of them", artist: "Frank Sinatra",  songTitle: "My Way", _id: "000009" }])
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/").then((response) => {
+    Axios.get("https://songlibrary.herokuapp.com/").then((response) => {
       setListOfSongs(response.data)
       console.log(response.data)
       console.log(Array.isArray(response.data))
@@ -22,7 +22,7 @@ const SongList = () => {
       </div>
       <div className='container d-flex flex-row flex-wrap mt-4 justify-content-center border border-dark-subtle'>
         {listOfSongs.length > 0
-          ? listOfSongs.map((song, index) => {
+          ? Array.from(listOfSongs).map((song, index) => {
             return (
               <div key={index} className="">
                 <Song song={song} />
