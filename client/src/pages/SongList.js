@@ -10,7 +10,7 @@ const SongList = () => {
     Axios.get("https://songlibrary.herokuapp.com/").then((response) => {
       setSongList(response.data)
     })
-  }, [])
+  }, [songList])
 
   return (
     <>
@@ -18,7 +18,7 @@ const SongList = () => {
         <AddSong songList={setSongList}/>
       </div>
       <div className='container d-flex flex-row flex-wrap mt-4 justify-content-center border border-dark-subtle'>
-        {songList.length > 0
+        {songList && songList.length > 0
           ? songList.map((song, index) => {
             return (
               <div key={index} className="">
