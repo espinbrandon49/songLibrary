@@ -35,7 +35,7 @@ router.put('/update', async (req, res) => {
 
   const newSongTitle = req.body.newSongTitle;
   const newArtist = req.body.newArtist;
-  const newAlbum = req.body.newArtist;
+  const newAlbum = req.body.newAlbum;
   const id = req.body.id;
 
   try {
