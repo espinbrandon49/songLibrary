@@ -4,22 +4,24 @@ import Song from '../components/Song';
 import AddSong from '../components/AddSong';
 
 const SongList = () => {
-  const [songList, setSongList] = useState([])
+  const [songList, setSongList] = useState([{ album: "Best of them", artist: "Frank Sinatra", songTitle: "My Way", _id: "000009" }])
 
   useEffect(() => {
-    Axios.get("https://songlibrary.herokuapp.com/").then((response) => {
+    Axios.get("http://localhost:3001").then((response) => {
       setSongList(response.data)
       console.log(response.data)
+      console.log(Array.isArray(response.data))
     })
-  }, [songList])
-
+  }, [])
+  console.log(songList)
+  console.log(Array.isArray(songList))
   return (
     <>
       <div>
-        <AddSong songList={setSongList}/>
+        <AddSong songList={setSongList} />
       </div>
       <div className='container d-flex flex-row flex-wrap mt-4 justify-content-center border border-dark-subtle'>
-        {songList && songList.length > 0
+        {songList.length > 0
           ? songList.map((song, index) => {
             return (
               <div key={index} className="">
