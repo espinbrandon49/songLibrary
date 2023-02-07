@@ -16,7 +16,7 @@ const SongList = () => {
       <div>
         <AddSong songList={setListOfSongs}/>
       </div>
-      <div className='container d-flex flex-wrap mt-4 justify-content-center border border-dark-subtle '>
+      <div className='container d-flex flex-wrap flex-row-reverse mt-4 justify-content-center border border-dark-subtle '>
         {listOfSongs.length > 0
           ? Array.from(listOfSongs).map((song, index) => {
             return (

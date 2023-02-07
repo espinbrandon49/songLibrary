@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Axios  from 'axios';
+import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
@@ -8,6 +8,15 @@ function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [login, setLogin] = useState('');
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+    } catch (err) {
+      console.log(err)
+    }
+    setLogin('')
+  }
 
   const addUser = () => {
     Axios.post("http://localhost:3001/api/user/signup", {
@@ -25,17 +34,8 @@ function Login() {
     addUser()
     setUsername('');
     setPassword('');
-   
-  };
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-    } catch (err) {
-      console.log(err)
-    }
-    setLogin('')
-  }
+  };
 
   return (
     <main className='container'>
