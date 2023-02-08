@@ -55,3 +55,10 @@ body > footer {
   position: sticky;
   top: 100vh;
 }
+
+@media screen and (max-width: 767px) {
+  .songList {
+    flex-direction: column-reverse !important;
+    align-items: center;
+  }
+}

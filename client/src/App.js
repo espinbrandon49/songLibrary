@@ -13,7 +13,8 @@ import { AuthContext } from './helpers/AuthContext';
 
 function App() {
 //TODO: 
-//login changes to logout if logged in
+
+//CSS media query on column, use column reverse
   const [authState, setAuthState] = useState({
     username: '',
     _id: '',
@@ -39,8 +40,7 @@ function App() {
       });
   }, [])
 
-  console.log(authState)
-
+  // console.log(authState)
   const logout = () => {
     localStorage.removeItem("accessToken");
     setAuthState({
@@ -55,7 +55,7 @@ function App() {
     <AuthContext.Provider value={{ authState, setAuthState }}>
       <Router>
         <div className="app">
-          <Header />
+          <Header logout={logout} />          
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='login' element={<Login />} />
