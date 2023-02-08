@@ -12,9 +12,10 @@ import { AuthContext } from './helpers/AuthContext';
 //can really add anything you wanted to authState and also modify using setAuthState
 
 function App() {
-//TODO: 
+  //TODO: 
+  // If you try to add a song but are not logged in, go to login page
+  //homepage message for if you are not logged in
 
-//CSS media query on column, use column reverse
   const [authState, setAuthState] = useState({
     username: '',
     _id: '',
@@ -55,7 +56,7 @@ function App() {
     <AuthContext.Provider value={{ authState, setAuthState }}>
       <Router>
         <div className="app">
-          <Header logout={logout} />          
+          <Header logout={logout} />
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='login' element={<Login />} />

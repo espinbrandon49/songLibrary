@@ -1,14 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { MdOutlineLibraryMusic } from "react-icons/md";
 import Axios from "axios";
+import { AuthContext } from "../helpers/AuthContext";
 
 const AddSong = () => {
   const [songTitle, setSongTitle] = useState('');
   const [artist, setArtist] = useState('');
   const [album, setAlbum] = useState('');
+  const {authState} = useContext(AuthContext);
 
   const addSong = () => {
     Axios.post("http://localhost:3001/api/songs/insert", {
+      id: authState.id,
       songTitle: songTitle,
       artist: artist,
       album: album

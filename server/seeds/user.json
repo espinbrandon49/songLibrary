@@ -1,14 +1,15 @@
 [
   {
     "username": "bambino1",
-    "password": "password01"
+    "password": "password01",
+    "songList": [ "63e3077d187e006f8a449e60", "63e3077d187e006f8a449e61"
+    ]
   },
   {
     "username": "bambino2",
-    "password": "password02"
-  },
-  {
-    "username": "bambino3",
-    "password": "password03"
+    "password": "password01",
+    "songList": [
+
+    ]
   }
 ]

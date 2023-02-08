@@ -6,7 +6,6 @@ import { AuthContext } from '../helpers/AuthContext';
 const Header = ({ logout }) => {
   const authState = useContext(AuthContext)
 
-  console.log(authState.authState.status)
   return (
     <nav className='navbar bg-light'>
       <div className='container'>

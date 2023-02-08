@@ -43,4 +43,25 @@ router.post('/signup', async (req, res) => {
   }
 })
 
+//get singleUser
+// router.get('/:id', async (req, res) => {
+//   const id = req.params.id;
+//   console.log(id)
+//   const userInfo = await User.findByPk(id, {
+//     attributes: { exclude: ['password'] },
+//   })
+//   res.json(userInfo)
+// })
+
+router.get('/:id', async (req, res) => {
+  User.findOne({ _id: req.params.id })
+    .select('-__v')
+    .then((user) =>
+      !user
+        ? res.status(404).json({ message: 'No user with that ID' })
+        : res.json(user)
+    )
+    .catch((err) => res.status(500).json(err));
+})
+
 module.exports = router;
