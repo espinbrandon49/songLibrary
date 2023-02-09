@@ -33,7 +33,7 @@ router.post('/login', async (req, res) => {
       const accessToken = sign(
         { username: user.username, _id: user._id },
         "importantsecret");
-        console.log(accessToken)
+
       res.json({
         token: accessToken, username: username, _id: user._id
       });
