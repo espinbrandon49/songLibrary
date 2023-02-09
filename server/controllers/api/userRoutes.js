@@ -6,24 +6,41 @@ const { sign } = require('jsonwebtoken');
 
 //login
 router.post('/login', async (req, res) => {
-  const { username, password } = req.body;
+  const username = req.body.username;
+  const password = req.body.password;
 
-  const user = await User.findOne({ where: { username: username } });
+  User.findOne({
+    username: username
+  })
+    .exec((err, user) => {
+      if (err) {
+        res.status(500).send({ message: err });
+        return;
+      }
+      if (!user) {
+        res.status(404).json({ message: 'User Not Found' });
+      }
 
-  if (!user) return res.json({ error: "User doesn't exist" });
+      const passwordIsValid = bcrypt.compareSync(
+        password,
+        user.password
+      );
 
-  bcrypt.compare(password, user.password).then((match) => {
-    if (!match) return res.json({ error: 'Wrong username and password combination' })
+      if (!passwordIsValid) {
+        return res.status(401).send({ message: "Invalid Password" });
+      }
 
-    const accessToken = sign(
-      { username: user.username, _id: user._id },
-      "importantsecret"
-    );
-    res.json({ token: accessToken, username: username, _id: user._id });
-  });
-})
+      const accessToken = sign(
+        { username: user.username, _id: user._id },
+        "importantsecret");
+        console.log(accessToken)
+      res.json({
+        token: accessToken, username: username, _id: user._id
+      });
 
-//identify who is logged in
+    });
+});
+
 router.get('/authToken', validateToken, (req, res) => {
   res.json(req.user)
 })
@@ -65,3 +82,29 @@ router.get('/:id', async (req, res) => {
 })
 
 module.exports = router;
+
+// const user = await User.findOne({ where: { username: username } });
+//   , (err) => {
+//   if (err) return res.json({ error: "User doesn't exist" })
+// })
+
+// if (!user) return res.json({ error: "User doesn't exist" });
+
+// bcrypt.compare(password, user.password).then((match) => {
+//   if (!match) return res.json({ error: 'Wrong username and password combination' })
+
+//   const accessToken = sign(
+//     { username: user.username, _id: user._id },
+//     "importantsecret"
+//   );
+//   res.json({ token: accessToken, username: username, _id: user._id });
+// });
+
+// const accessToken = sign(
+//   { username: user.username, _id: user._id },
+//   "importantsecret"
+// );
+// res.json({ token: accessToken, username: username, _id: user._id });
+
+
+//identify who is logged in

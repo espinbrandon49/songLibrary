@@ -15,7 +15,8 @@ function App() {
   //TODO: 
   // If you try to add a song but are not logged in, go to login page
   //homepage message for if you are not logged in
-
+  //handle 'fill in all fields' error, app crashes , login and signup
+  //check for duplicate user names? maybe
   const [authState, setAuthState] = useState({
     username: '',
     _id: '',
@@ -41,7 +42,6 @@ function App() {
       });
   }, [])
 
-  // console.log(authState)
   const logout = () => {
     localStorage.removeItem("accessToken");
     setAuthState({

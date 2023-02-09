@@ -1,14 +1,14 @@
 const router = require('express').Router();
 const { Song, User } = require('../../models');
 
-// router.get('/listofsongs', async (req, res) => {
-//   Song.find({}, (err, result) => {
-//     if (err) {
-//       res.send(err)
-//     }
-//     res.send(result)
-//   })
-// });
+router.get('/listofsongs', async (req, res) => {
+  Song.find({}, (err, result) => {
+    if (err) {
+      res.send(err)
+    }
+    res.send(result)
+  })
+});
 
 // router.post('/insert', async (req, res) => {
 //   const id = req.body.id;

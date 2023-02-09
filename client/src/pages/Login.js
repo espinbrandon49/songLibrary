@@ -13,6 +13,7 @@ function Login() {
 
   const login = () => {
     const data = { username: username, password: password };
+
     Axios
       .post("http://localhost:3001/api/user/login", data)
       .then((response) => {
@@ -20,7 +21,7 @@ function Login() {
           console.log(response.data.error)
         } else {
           localStorage.setItem('accessToken', response.data.token)
-
+          console.log(response.data.token)
           setAuthState({
             username: response.data.username,
             _id: response.data._id,
@@ -30,7 +31,6 @@ function Login() {
         }
       })
   }
-  console.log(window.localStorage.accessToken)
 
   const onSubmitLogin = (e) => {
     e.preventDefault();
@@ -38,7 +38,6 @@ function Login() {
       alert('Please fill in all fields')
     }
     login();
-    console.log(username, password)
     setUsername('');
     setPassword('');
   }
@@ -66,21 +65,23 @@ function Login() {
       <form onSubmit={onSubmitLogin}>
         <h2>Login</h2>
         <FloatingLabel
-          controlId="username"
-          label="username"
+          controlId="formUsername"
+          label="Username"
           className="mb-3"
         >
           <Form.Control
             type="text"
             placeholder="Enter username"
             onChange={(e) => { setUsername(e.target.value) }}
+            autoComplete="off"
           />
         </FloatingLabel>
-        <FloatingLabel controlId="floatingPassword" label="Password">
+        <FloatingLabel controlId="formPassword" label="Password">
           <Form.Control
             type="password"
             placeholder="Password"
             onChange={(e) => { setPassword(e.target.value) }}
+            autoComplete="off"
           />
         </FloatingLabel>
         <button type='submit' className='btn btn-primary'>Login</button>
@@ -91,7 +92,7 @@ function Login() {
       <form onSubmit={onSubmitSignup} >
         <h2>Signup</h2>
         <FloatingLabel
-          controlId="formUsername"
+          controlId="formUsernameSignup"
           label="username"
           className="mb-3"
         >
@@ -100,6 +101,7 @@ function Login() {
             placeholder="Create a username"
             value={usernameSignup}
             onChange={(e) => setUsernameSignup(e.target.value)}
+            autoComplete="off"
           />
         </FloatingLabel>
         <FloatingLabel controlId="floatingPassword" label="Password">
@@ -108,6 +110,7 @@ function Login() {
             placeholder="Password"
             value={passwordSignup}
             onChange={(e) => setPasswordSignup(e.target.value)}
+            autoComplete="off"
           />
         </FloatingLabel>
         <button type='submit' className='btn btn-primary'>Signup</button>

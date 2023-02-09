@@ -7,26 +7,38 @@ import AddSong from './AddSong';
 const SongList = () => {
   const [listOfSongs, setListOfSongs] = useState([])
   const { authState } = useContext(AuthContext)
-  const [user, setUser] = useState({})
+  const [singleUser, setSingleUser] = useState({})
+  const [userSongs, setUserSongs] = useState([])
   let id;
   authState ? id = authState.id : id = ''
 
-  // useEffect(() => {
-  //   Axios.get("http://localhost:3001/api/songs/listofsongs").then((response) => {
-  //     setListOfSongs(response.data)
-  //   })
-  // }, [])
+  useEffect(() => {
+    Axios.get("http://localhost:3001/api/songs/listofsongs")
+      .then((response) => {
+        setListOfSongs(response.data)
+      })
+      .then((response) => {
+        setUserSongs(response.data.filter((song, index) => singleUser.songList.includes(song._id)))
+      })
+  }, [])
 
   useEffect(() => {
     Axios.get(`http://localhost:3001/api/user/${id}`).then((response) => {
-      setUser(response.data)
-      console.log(response.data)
+      setSingleUser(response.data)
     })
   }, [authState])
 
-  // console.log(id)
-  // console.log(user)
-  // console.log(authState)
+  // console.log(listOfSongs)
+  console.log(
+    {
+      "authState": authState,
+      "singleUser": singleUser,
+      "userSongs": userSongs,
+    }
+  )
+
+  // const userSongs = listOfSongs.filter((song, index) => user.songList.includes(song._id))
+  // console.log(userSongs)
 
   return (
     <>
