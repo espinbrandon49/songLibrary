@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { MdOutlineLibraryMusic } from "react-icons/md";
 import Axios from "axios";
 import { AuthContext } from "../helpers/AuthContext";
@@ -7,7 +8,7 @@ const AddSong = () => {
   const [songTitle, setSongTitle] = useState('');
   const [artist, setArtist] = useState('');
   const [album, setAlbum] = useState('');
-  const {authState} = useContext(AuthContext);
+  const { authState } = useContext(AuthContext);
 
   const addSong = () => {
     Axios.post("http://localhost:3001/api/songs/insert", {
@@ -25,9 +26,9 @@ const AddSong = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (songTitle === '' || artist === '' || album === '') {
-      alert('Please fill in all fields')
-    }
+    // if (songTitle === '' || artist === '' || album === '') {
+    //   alert('Please fill in all fields')
+    // }
 
     addSong();
 
@@ -38,12 +39,15 @@ const AddSong = () => {
 
   return (
     <>
-      <button type="button" className="btn btn-primary btn-lg w-100 square" data-bs-toggle="modal" data-bs-target="#addSong">
-        <div className="d-flex align-items-center justify-content-center">
-          <MdOutlineLibraryMusic />
-          <div>Add Song</div>
-        </div>
-      </button>
+      {!authState.status
+        ? <Link className="btn btn-primary btn-lg w-100 square" to='/login'>Add Song</Link>
+        : <button type="button" className="btn btn-primary btn-lg w-100 square" data-bs-toggle="modal" data-bs-target="#addSong">
+          <div className="d-flex align-items-center justify-content-center">
+            <MdOutlineLibraryMusic />
+            <div>Add Song</div>
+          </div>
+        </button>
+      }
 
       <div className="modal fade" id="addSong" aria-labelledby="addSongLabel" aria-hidden="true">
         <div className="modal-dialog">

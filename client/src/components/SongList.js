@@ -32,8 +32,6 @@ const SongList = () => {
       })
   }, [authState])
 
-  //  setUserSongs(listOfSongs.filter((song, index) => singleUser.songList.includes(song._id)));
-
   console.log(
     {
       "listOfSongs": listOfSongs,
@@ -48,14 +46,17 @@ const SongList = () => {
         <AddSong songList={setListOfSongs} />
       </div>
       <div className='songList container d-flex flex-wrap flex-row-reverse mt-4 justify-content-center border border-dark-subtle '>
-        {listOfSongs.length > 0
-          ? userSongs.map((song, index) => {
-            return (
-              <div key={index} className="">
-                <Song song={song} />
-              </div>)
-          })
-          : (<p className='textColor display-6 text-center mt-5'>No songs in Library</p>)}
+        {
+          !authState.status
+            ? <><div className='fs-1 py-3'>┏(-_-)┛┗(-_- )┓</div><div className='display-6 text-light py-3'>Login to to see your songs</div></>
+            : listOfSongs.length > 0
+              ? userSongs.map((song, index) => {
+                return (
+                  <div key={index} className="">
+                    <Song song={song} />
+                  </div>)
+              })
+              : (<p className='textColor display-6 text-center mt-5'>No songs in Library</p>)}
       </div>
     </>
   )

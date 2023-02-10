@@ -45,7 +45,6 @@ router.post('/login', async (req, res) => {
         _id: user._id,
         userSongs: userSongs
       });
-      console.log(userSongs)   
     });
 });
 
