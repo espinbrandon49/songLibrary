@@ -17,28 +17,30 @@ const SongList = () => {
       .then((response) => {
         setListOfSongs(response.data)
       })
-      .then((response) => {
-        setUserSongs(response.data.filter((song, index) => singleUser.songList.includes(song._id)))
-      })
-  }, [])
+      // .then((response) => {
+      //   setUserSongs(response.data.filter((song, index) => singleUser.songList.includes(song._id)))
+      // })
+  }, [singleUser])
 
   useEffect(() => {
-    Axios.get(`http://localhost:3001/api/user/${id}`).then((response) => {
+    Axios.get(`http://localhost:3001/api/user/${id}`)
+    .then((response) => {
       setSingleUser(response.data)
     })
-  }, [authState])
+    .then((response) => {
+      setUserSongs(listOfSongs.filter((song, index) => singleUser.songList.includes(song._id)))
+    })
+  }, [listOfSongs])
 
-  // console.log(listOfSongs)
+console.log(authState.status)
   console.log(
     {
+      "listOfSongs": listOfSongs,
       "authState": authState,
       "singleUser": singleUser,
       "userSongs": userSongs,
     }
   )
-
-  // const userSongs = listOfSongs.filter((song, index) => user.songList.includes(song._id))
-  // console.log(userSongs)
 
   return (
     <>
@@ -47,7 +49,7 @@ const SongList = () => {
       </div>
       <div className='songList container d-flex flex-wrap flex-row-reverse mt-4 justify-content-center border border-dark-subtle '>
         {listOfSongs.length > 0
-          ? Array.from(listOfSongs).map((song, index) => {
+          ? userSongs.map((song, index) => {
             return (
               <div key={index} className="">
                 <Song song={song} />

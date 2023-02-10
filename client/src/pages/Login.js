@@ -21,7 +21,6 @@ function Login() {
           console.log(response.data.error)
         } else {
           localStorage.setItem('accessToken', response.data.token)
-          console.log(response.data.token)
           setAuthState({
             username: response.data.username,
             _id: response.data._id,

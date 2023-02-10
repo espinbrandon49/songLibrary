@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User} = require('../../models');
 const bcrypt = require('bcrypt');
 const { validateToken } = require('../../middleWares/AuthMiddlewares');
 const { sign } = require('jsonwebtoken');
@@ -9,14 +9,14 @@ router.post('/login', async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
 
-  User.findOne({
-    username: username
-  })
+  await User.findOne({ username: username })
+    .populate({path: "songList"})
     .exec((err, user) => {
       if (err) {
         res.status(500).send({ message: err });
         return;
       }
+
       if (!user) {
         res.status(404).json({ message: 'User Not Found' });
       }
@@ -29,15 +29,30 @@ router.post('/login', async (req, res) => {
       if (!passwordIsValid) {
         return res.status(401).send({ message: "Invalid Password" });
       }
+      
+      let userSongs = [];
+      for (let i = 0; i < user.songList.length; i++) {
+        userSongs.push(user.songList[i])
+      }
 
       const accessToken = sign(
         { username: user.username, _id: user._id },
         "importantsecret");
 
-      res.json({
-        token: accessToken, username: username, _id: user._id
-      });
+      // res.json({
+      //   token: accessToken,
+      //   username: username,
+      //   _id: user._id,
+      //   songList: user.songList
+      // });
 
+      res.status(200).send({
+        token: accessToken,
+        username: username,
+        _id: user._id,
+        userSongs: userSongs
+      });
+      console.log(userSongs)   
     });
 });
 
@@ -60,16 +75,6 @@ router.post('/signup', async (req, res) => {
   }
 })
 
-//get singleUser
-// router.get('/:id', async (req, res) => {
-//   const id = req.params.id;
-//   console.log(id)
-//   const userInfo = await User.findByPk(id, {
-//     attributes: { exclude: ['password'] },
-//   })
-//   res.json(userInfo)
-// })
-
 router.get('/:id', async (req, res) => {
   User.findOne({ _id: req.params.id })
     .select('-__v')
@@ -82,29 +87,3 @@ router.get('/:id', async (req, res) => {
 })
 
 module.exports = router;
-
-// const user = await User.findOne({ where: { username: username } });
-//   , (err) => {
-//   if (err) return res.json({ error: "User doesn't exist" })
-// })
-
-// if (!user) return res.json({ error: "User doesn't exist" });
-
-// bcrypt.compare(password, user.password).then((match) => {
-//   if (!match) return res.json({ error: 'Wrong username and password combination' })
-
-//   const accessToken = sign(
-//     { username: user.username, _id: user._id },
-//     "importantsecret"
-//   );
-//   res.json({ token: accessToken, username: username, _id: user._id });
-// });
-
-// const accessToken = sign(
-//   { username: user.username, _id: user._id },
-//   "importantsecret"
-// );
-// res.json({ token: accessToken, username: username, _id: user._id });
-
-
-//identify who is logged in

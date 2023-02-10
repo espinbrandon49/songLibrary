@@ -10,22 +10,6 @@ router.get('/listofsongs', async (req, res) => {
   })
 });
 
-// router.post('/insert', async (req, res) => {
-//   const id = req.body.id;
-//   const songTitle = req.body.songTitle;
-//   const artist = req.body.artist;
-//   const album = req.body.album;
-
-//   const song = new Song({ songTitle: songTitle, artist: artist, album: album })
-
-//   try {
-//     await song.save();
-//     res.send("SONG ADDED")
-//   } catch (err) {
-//     console.log(error)
-//   }
-// });
-
 router.post('/insert', (req, res) => {
   const id = req.body.id;
   const songTitle = req.body.songTitle;
