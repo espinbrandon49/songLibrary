@@ -39,13 +39,6 @@ router.post('/login', async (req, res) => {
         { username: user.username, _id: user._id },
         "importantsecret");
 
-      // res.json({
-      //   token: accessToken,
-      //   username: username,
-      //   _id: user._id,
-      //   songList: user.songList
-      // });
-
       res.status(200).send({
         token: accessToken,
         username: username,
