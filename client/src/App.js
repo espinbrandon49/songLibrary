@@ -19,7 +19,7 @@ function App() {
   })
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/api/user/authToken", {
+    Axios.get("https://songlibrary.herokuapp.com/api/user/authToken", {
       headers: {
         accessToken: localStorage.getItem("accessToken"),
       },

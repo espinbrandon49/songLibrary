@@ -15,7 +15,7 @@ function Login() {
     const data = { username: username, password: password };
 
     Axios
-      .post("http://localhost:3001/api/user/login", data)
+      .post("https://songlibrary.herokuapp.com/api/user/login", data)
       .then((response) => {
         if (response.data.error) {
           console.log(response.data.error)
@@ -42,7 +42,7 @@ function Login() {
   }
 
   const addUser = () => {
-    Axios.post("http://localhost:3001/api/user/signup", {
+    Axios.post("https://songlibrary.herokuapp.com/api/user/signup", {
       usernameSignup: usernameSignup,
       passwordSignup: passwordSignup
     })

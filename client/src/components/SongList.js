@@ -13,7 +13,7 @@ const SongList = () => {
   authState ? id = authState.id : id = ''
 
   useEffect(() => {
-    Axios.get(`http://localhost:3001/api/user/${id}`)
+    Axios.get(`https://songlibrary.herokuapp.com/api/user/${id}`)
       .then((response) => {
         setSingleUser(response.data)
       })
@@ -23,7 +23,7 @@ const SongList = () => {
   }, [listOfSongs])
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/api/songs/listofsongs")
+    Axios.get("https://songlibrary.herokuapp.com/api/songs/listofsongs")
       .then((response) => {
         setListOfSongs(response.data)
       })

@@ -11,7 +11,7 @@ const AddSong = () => {
   const { authState } = useContext(AuthContext);
 
   const addSong = () => {
-    Axios.post("http://localhost:3001/api/songs/insert", {
+    Axios.post("https://songlibrary.herokuapp.com/api/songs/insert", {
       id: authState.id,
       songTitle: songTitle,
       artist: artist,
