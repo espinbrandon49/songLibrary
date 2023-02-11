@@ -12,11 +12,6 @@ import { AuthContext } from './helpers/AuthContext';
 //can really add anything you wanted to authState and also modify using setAuthState
 
 function App() {
-  //TODO: 
-  // If you try to add a song but are not logged in, go to login page
-  //homepage message for if you are not logged in
-  //handle 'fill in all fields' error, app crashes , login and signup
-  //check for duplicate user names? maybe
   const [authState, setAuthState] = useState({
     username: '',
     _id: '',
