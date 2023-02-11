@@ -13,6 +13,10 @@ body {
   background-color: #DACBB4;
 }
 
+.roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
 footer {
   position: fixed;
   bottom: 0;

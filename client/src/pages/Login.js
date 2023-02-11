@@ -61,59 +61,67 @@ function Login() {
 
   return (
     <main className='container'>
-      <form onSubmit={onSubmitLogin}>
-        <h2>Login</h2>
-        <FloatingLabel
-          controlId="formUsername"
-          label="Username"
-          className="mb-3"
-        >
-          <Form.Control
-            type="text"
-            placeholder="Enter username"
-            onChange={(e) => { setUsername(e.target.value) }}
-            autoComplete="off"
-          />
-        </FloatingLabel>
-        <FloatingLabel controlId="formPassword" label="Password">
-          <Form.Control
-            type="password"
-            placeholder="Password"
-            onChange={(e) => { setPassword(e.target.value) }}
-            autoComplete="off"
-          />
-        </FloatingLabel>
-        <button type='submit' className='btn btn-primary'>Login</button>
-      </form>
+      <div className='mt-3 border border-light-subtle roboto'>
+        <form className='p-5' onSubmit={onSubmitLogin}>
+          <h2 className='mb-3 text-muted'>Login</h2>
+          <FloatingLabel
+            controlId="formUsername"
+            label="Username"
+            className="mb-3"
+          >
+            <Form.Control
+              type="text"
+              placeholder="Enter username"
+              onChange={(e) => { setUsername(e.target.value) }}
+              autoComplete="off"
+            />
+          </FloatingLabel>
+          <FloatingLabel controlId="formPassword" label="Password">
+            <Form.Control
+              className='mb-3'
+              type="password"
+              placeholder="Password"
+              onChange={(e) => { setPassword(e.target.value) }}
+              autoComplete="off"
+            />
+          </FloatingLabel>
+          <button type='submit' className='btn btn-primary'>Login</button>
+        </form>
+      </div>
 
       <hr />
-
-      <form onSubmit={onSubmitSignup} >
-        <h2>Signup</h2>
-        <FloatingLabel
-          controlId="formUsernameSignup"
-          label="username"
-          className="mb-3"
-        >
-          <Form.Control
-            type="text"
-            placeholder="Create a username"
-            value={usernameSignup}
-            onChange={(e) => setUsernameSignup(e.target.value)}
-            autoComplete="off"
-          />
-        </FloatingLabel>
-        <FloatingLabel controlId="floatingPassword" label="Password">
-          <Form.Control
-            type="password"
-            placeholder="Password"
-            value={passwordSignup}
-            onChange={(e) => setPasswordSignup(e.target.value)}
-            autoComplete="off"
-          />
-        </FloatingLabel>
-        <button type='submit' className='btn btn-primary'>Signup</button>
-      </form >
+      <div className='mt-3 border border-light-subtle roboto'>
+        <form className='p-5' onSubmit={onSubmitSignup} >
+          <h2 className='mb-3 text-muted'>Signup</h2>
+          <FloatingLabel
+            controlId="formUsernameSignup"
+            label="username"
+            className="mb-3"
+          >
+            <Form.Control
+              type="text"
+              placeholder="Create a username"
+              value={usernameSignup}
+              onChange={(e) => setUsernameSignup(e.target.value)}
+              autoComplete="off"
+            />
+          </FloatingLabel>
+          <FloatingLabel 
+            controlId="floatingPassword" 
+            label="Password"
+            className="mb-3"
+            >
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              value={passwordSignup}
+              onChange={(e) => setPasswordSignup(e.target.value)}
+              autoComplete="off"
+            />
+          </FloatingLabel>
+          <button type='submit' className='btn btn-primary'>Signup</button>
+        </form >
+      </div>
     </main>
   );
 }

@@ -48,7 +48,14 @@ const SongList = () => {
       <div className='songList container d-flex flex-wrap flex-row-reverse mt-4 justify-content-center border border-dark-subtle '>
         {
           !authState.status
-            ? <><div className='fs-1 py-3'>┏(-_-)┛┗(-_- )┓</div><div className='display-6 text-light py-3'>Login to to see your songs</div></>
+            ? <div className='d-flex flex-column text-center'>
+              <div className='fs-1 py-3'>
+                ┏(-_-)┛┗(-_- )┓
+              </div>
+              <div className='display-6 text-light py-3'>
+                Login to to see your songs
+              </div>
+            </div>
             : listOfSongs.length > 0
               ? userSongs.map((song, index) => {
                 return (
