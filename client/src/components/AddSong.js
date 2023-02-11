@@ -90,7 +90,7 @@ const AddSong = () => {
                 </div>
                 <button
                   type="submit"
-                  className="btn btn-primary-outline w-100"
+                  className="btn btn-primary w-100"
                   data-bs-dismiss="modal"
                 >Submit</button>
               </form>
